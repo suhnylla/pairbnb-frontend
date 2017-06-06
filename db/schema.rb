@@ -11,25 +11,107 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920064151) do
+ActiveRecord::Schema.define(version: 20170602031610) do
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+  create_table "authentications", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "token"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
+
+  create_table "listings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "description"
+    t.string   "accomodates_no_persons"
+    t.string   "address"
+    t.string   "city"
+    t.string   "price"
+    t.string   "photo_url"
+    t.boolean  "smooking"
+    t.boolean  "pet_friendly"
+    t.boolean  "apartment"
+    t.boolean  "house"
+    t.integer  "house_type"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "photos"
+  end
+
+  add_index "listings", ["user_id"], name: "index_listings_on_user_id"
+
+  create_table "message_threads", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "title"
+    t.text     "message"
+    t.boolean  "read"
+    t.integer  "message_thread_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "reservation_id_id"
+    t.integer  "total_amount"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "payments", ["reservation_id_id"], name: "index_payments_on_reservation_id_id"
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "user_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "trip_id"
+    t.integer  "user_id"
+    t.text     "review"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "listing_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "encrypted_password", limit: 128
+    t.string   "confirmation_token", limit: 128
+    t.string   "remember_token",     limit: 128
+    t.integer  "role",                           default: 0
+    t.string   "avatar"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["listing_id"], name: "index_users_on_listing_id"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

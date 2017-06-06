@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  description: MyString
+  accomodates_no_persons: MyString
+  address: MyString
+  city: MyString
+  price: MyString
+  photo_url: MyString
+  smooking: false
+  pet_friendly: false
+  apartment: false
+  house: false
+  house_type: 1
+  start_date: 2017-05-30
+  end_date: 2017-05-30
+
+two:
+  user_id: 
+  description: MyString
+  accomodates_no_persons: MyString
+  address: MyString
+  city: MyString
+  price: MyString
+  photo_url: MyString
+  smooking: false
+  pet_friendly: false
+  apartment: false
+  house: false
+  house_type: 1
+  start_date: 2017-05-30
+  end_date: 2017-05-30

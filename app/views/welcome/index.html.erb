@@ -2,12 +2,62 @@
   <div class="main-text">Pair BnB</div>
   <div class="sub-text">A place to find your next home</div>
 </div>
+
+<%= link_to "Sign in with Facebook", "/auth/facebook" %>
+
+
+<table id='listings-table'>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Description</th>
+      <th>Accomodates no persons</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Price</th>
+      <th>Photo url</th>
+      <th>Smooking</th>
+      <th>Pet friendly</th>
+      <th>Apartment</th>
+      <th>House</th>
+      <th>House type</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td><%= listing.user.email %></td>
+        <td><%= listing.description %></td>
+        <td><%= listing.accomodates_no_persons %></td>
+        <td><%= listing.address %></td>
+        <td><%= listing.city %></td>
+        <td><%= listing.price %></td>
+        <td><%= image_tag listing.photo_url, class: 'listing-photo' %></td>
+        <td><%= listing.smooking %></td>
+        <td><%= listing.pet_friendly %></td>
+        <td><%= listing.apartment %></td>
+        <td><%= listing.house %></td>
+        <td><%= listing.house_type %></td>
+        <td><%= listing.start_date %></td>
+        <td><%= listing.end_date %></td>
+        <td><%= link_to 'Show', listing %></td>
+        <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+        <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <div class="div-one">
-  <div class="para-one">
+  <div class="para-one" id='about-us'>
     <h1>About Us</h1>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</div>
+    This is a home booking website made by the 'people' for the 'people'</div>
   <div class="para-two">
     <h1>Why use us</h1>
-    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+    You can be part of a community sharing cultures while widening your travel horizons. Wherever you go...home is where you will be. 
   </div>
 </div>

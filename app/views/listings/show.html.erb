@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @listing.user.email %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
+</p>
+
+<p>
+  <strong>Accomodates no persons:</strong>
+  <%= @listing.accomodates_no_persons %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @listing.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @listing.city %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @listing.price %>
+</p>
+
+<div class="listings-show" style="color:white">
+<% @listing.photos.each do |photo| %>
+  <%= image_tag(photo.thumb.url) %>
+<% end %>
+<p>
+  <strong>Photo url:</strong>
+  <%= @listing.photo_url %>
+</p>
+</div>div>
+
+<p>
+  <strong>Smooking:</strong>
+  <%= @listing.smooking %>
+</p>
+
+<p>
+  <strong>Pet friendly:</strong>
+  <%= @listing.pet_friendly %>
+</p>
+
+<p>
+  <strong>Apartment:</strong>
+  <%= @listing.apartment %>
+</p>
+
+<p>
+  <strong>House:</strong>
+  <%= @listing.house %>
+</p>
+
+<p>
+  <strong>House type:</strong>
+  <%= @listing.house_type %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @listing.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @listing.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>
+<%= link_to 'New Reservation', new_listing_reservation_path(@listing) %>

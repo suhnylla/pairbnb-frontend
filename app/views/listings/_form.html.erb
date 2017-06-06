@@ -1,0 +1,76 @@
+<%= form_for(@listing) do |f| %>
+  <% if @listing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+
+      <ul>
+      <% @listing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :accomodates_no_persons %><br>
+    <%= f.text_field :accomodates_no_persons %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :photo_url %><br>
+    <%= f.text_field :photo_url %>
+  </div>
+  <div class="field">
+    <%= f.label :smooking %><br>
+    <%= f.check_box :smooking %>
+  </div>
+  <div class="field">
+    <%= f.label :pet_friendly %><br>
+    <%= f.check_box :pet_friendly %>
+  </div>
+  <div class="field">
+    <%= f.label :apartment %><br>
+    <%= f.check_box :apartment %>
+  </div>
+  <div class="field">
+    <%= f.label :house %><br>
+    <%= f.check_box :house %>
+  </div>
+  <div class="field">
+    <%= f.label :house_type %><br>
+    <%= f.number_field :house_type %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :photos %><br>
+    <%= f.file_field :photos, multiple: true  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

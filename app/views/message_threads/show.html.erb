@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @message_thread.owner_id %>
+</p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @message_thread.sender_id %>
+</p>
+
+<%= link_to 'Edit', edit_message_thread_path(@message_thread) %> |
+<%= link_to 'Back', message_threads_path %>

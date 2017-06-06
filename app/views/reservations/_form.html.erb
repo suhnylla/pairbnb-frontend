@@ -1,0 +1,8 @@
+<%= form_for [@listing, @reservation] do |f| %>
+ Booking Period: 
+ <br><%= f.date_select :start_date %></br>
+ <br><%= f.date_select :end_date %></br>
+
+
+</br>
+  <%= button_to "Request to Book", new_reservation_path, class: "btn btn-secondary" %><% end %>

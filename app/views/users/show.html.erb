@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<div class="users-show" style="color:white">
+<%= image_tag(@user.avatar.url) %>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @user.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @user.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @user.country %>
+</p>
+
+<p>
+  <strong>Listing:</strong>
+  <% @user.listings.each do |listing| %>
+    <%= listing.description %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user), {:style=>"color:white;"} %> |
+<%= link_to 'Back', users_path, {:style=>"color:white;"} %>
+
+</div>
