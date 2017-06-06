@@ -34,6 +34,7 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.new(reservation_params)
     @reservation.listing_id = params[:listing_id]
     @reservation.amount = @reservation.listing.price.to_i*(@reservation.end_date - @reservation.start_date)
+    # @host = "abc@gmail.com"
     
     if @reservation.check_if_overlap?
       flash.now[:danger] = "Dates overlapped!"
@@ -41,6 +42,11 @@ class ReservationsController < ApplicationController
     else
       respond_to do |format|
         if @reservation.save
+          # ReservationMailer.notification_email(current_user.email, @host, @reservation.listing.id, @reservation.id).deliver_now
+          # ReservationMailer to send a notification email after save
+          # ReservationMailer.notification_email(current_user.email, @host, @reservation.listing.id, @reservation.id).deliver_later
+          # ReservationJob.perform_later(current_user.email, @host, @reservation.listing.id, @reservation.id)
+          # call out reservation job to perform the mail sending task after @reservation is successfully saved
           format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
           format.json { render :show, status: :created, location: @reservation }
         else

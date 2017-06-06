@@ -25,10 +25,12 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
+   
     @listing = current_user.listings.new(listing_params)
 
     respond_to do |format|
       if @listing.save
+        UserMailer.welcome_email(current_user).deliver_now
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
         format.json { render :show, status: :created, location: @listing }
       else
