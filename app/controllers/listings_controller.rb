@@ -8,6 +8,18 @@ class ListingsController < ApplicationController
     @listings = Listing.all
   end
 
+  def search
+
+     if params[:search]
+      @listings = Listing.search(params[:search]).order("created_at DESC")
+     else
+      @listings = Listing.all.order("created_at DESC")
+    end
+  
+    render 'listings/index'
+  end
+
+
   # GET /listings/1
   # GET /listings/1.json
   def show

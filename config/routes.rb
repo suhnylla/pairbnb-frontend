@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :listings do
     resources :reservations, only: [:new, :create]
   end
+  post 'search' => "listings#search", as: 'search'
+
+
   resources :users
   resources :uploads
   root 'welcome#index'

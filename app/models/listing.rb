@@ -10,4 +10,8 @@ class Listing < ActiveRecord::Base
  	#  order("created_at desc").limit(limit)
   # end
 
+ def self.search(search)
+  where("description LIKE ? OR address LIKE ? OR city LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+ end
+
 end
