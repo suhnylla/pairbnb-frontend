@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170602031610) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
     t.string   "token"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170602031610) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170602031610) do
     t.string   "photos"
   end
 
-  add_index "listings", ["user_id"], name: "index_listings_on_user_id"
+  add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
   create_table "message_threads", force: :cascade do |t|
     t.integer  "owner_id"
@@ -65,13 +68,13 @@ ActiveRecord::Schema.define(version: 20170602031610) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "reservation_id_id"
+    t.integer  "reservation_id"
     t.integer  "total_amount"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "payments", ["reservation_id_id"], name: "index_payments_on_reservation_id_id"
+  add_index "payments", ["reservation_id"], name: "index_payments_on_reservation_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "listing_id"
@@ -100,7 +103,6 @@ ActiveRecord::Schema.define(version: 20170602031610) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.integer  "listing_id"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.string   "encrypted_password", limit: 128
@@ -110,8 +112,10 @@ ActiveRecord::Schema.define(version: 20170602031610) do
     t.string   "avatar"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email"
-  add_index "users", ["listing_id"], name: "index_users_on_listing_id"
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
+  add_foreign_key "authentications", "users"
+  add_foreign_key "listings", "users"
+  add_foreign_key "payments", "reservations"
 end

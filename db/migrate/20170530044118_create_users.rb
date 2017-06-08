@@ -8,7 +8,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :country
-      t.references :listing, index: true, foreign_key: true
 
       t.timestamps null: false
     end
